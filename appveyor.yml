@@ -15,6 +15,10 @@ build_script:
   # Build the installer
   - gem inst bundler
   - bundle
+  - bundle exec rake ssl:update_check
+  - bundle exec rake --trace --verbose ri:ruby-%target_ruby%-%arch%:unpack
+  - bundle exec rake --trace --verbose ri:ruby-%target_ruby%-%arch%:sandbox
+  - bundle exec rake --trace --verbose ri:ruby-%target_ruby%-%arch%:archive-7z
   - bundle exec rake --trace --verbose ri:ruby-%target_ruby%-%arch%:installer-inno
 
 test_script:

@@ -18,7 +18,9 @@ build_script:
   - c:/msys64/%MSYSTEM%/bin/gcc.exe --version
 
   # Build the installer
-  - rake ri:ruby-%target_ruby%-%arch%
+  - cd packages/ri
+  - rake ruby-%target_ruby%-%arch%
+  - cd ../..
 
   # Reuse installed ruby for RubyInstaller-Devkit
   - c:/msys64/usr/bin/mkdir -p packages/ri-msys/recipes/

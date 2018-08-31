@@ -8,23 +8,12 @@ init:
 
 install:
   - choco install -y InnoSetup
-  # Update pacman database.
-  - C:/msys64/usr/bin/pacman --noconfirm --sync --refresh --refresh --sysupgrade --sysupgrade
-  - c:/msys64/usr/bin/bash -lc "pacman -S --noconfirm --needed p7zip  ${MINGW_PACKAGE_PREFIX}-gcc-libs ${MINGW_PACKAGE_PREFIX}-gdbm ${MINGW_PACKAGE_PREFIX}-gmp ${MINGW_PACKAGE_PREFIX}-gdbm  ${MINGW_PACKAGE_PREFIX}-libffi  ${MINGW_PACKAGE_PREFIX}-libyaml ${MINGW_PACKAGE_PREFIX}-readline  ${MINGW_PACKAGE_PREFIX}-openssl  ${MINGW_PACKAGE_PREFIX}-zlib"
 
 build_script:
   - c:/msys64/%MSYSTEM%/bin/gcc.exe --version
 
   # Build the installer
-  - rake ri:ruby-%target_ruby%-%arch%
-
-  # Reuse installed ruby for RubyInstaller-Devkit
-  - c:/msys64/usr/bin/mkdir -p packages/ri-msys/recipes/
-  - c:/msys64/usr/bin/cp -a packages/ri/recipes/unpack packages/ri-msys/recipes/
-  # Remove broken pkg files from cache
-  - c:/msys64/usr/bin/rm -f c:/msys64/var/cache/pacman/pkg/{autoconf,automake,bash-completion,ca-certificates}*
-  # Build the RubyInstaller-Devkit installer
-  - rake ri-msys:ruby-%target_ruby%-%arch%:installer-inno
+  - rake ri:ruby-%target_ruby%-%arch% ri-msys:ruby-%target_ruby%-%arch%:installer-inno
 
 test_script:
   # Run the built Ruby installer and install to c:/ri2-ruby

@@ -13,7 +13,9 @@ build_script:
   - c:/msys64/%MSYSTEM%/bin/gcc.exe --version
 
   # Build the installer
-  - rake ri:ruby-%target_ruby%-%arch% ri-msys:ruby-%target_ruby%-%arch%:installer-inno
+  - gem inst bundler
+  - bundle
+  - bundle exec rake --trace --verbose ri:ruby-%target_ruby%-%arch%:installer-inno
 
 test_script:
   # Run the built Ruby installer and install to c:/ri2-ruby

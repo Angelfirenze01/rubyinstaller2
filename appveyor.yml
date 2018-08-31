@@ -8,11 +8,8 @@ init:
 
 install:
   - choco install -y InnoSetup
-  # Update pacman database.
-  - c:/msys64/usr/bin/bash -lc "pacman -Sy --noconfirm"
-  # Update ruby dependencies, because the pre-installed are outdated.
-  # Keep this in sync with the "depends" list in PKGBUILD files.
-  - c:/msys64/usr/bin/bash -lc "pacman -S --noconfirm --needed ${MINGW_PACKAGE_PREFIX}-toolchain ${MINGW_PACKAGE_PREFIX}-gcc-libs ${MINGW_PACKAGE_PREFIX}-gdbm ${MINGW_PACKAGE_PREFIX}-gmp ${MINGW_PACKAGE_PREFIX}-libffi ${MINGW_PACKAGE_PREFIX}-libyaml ${MINGW_PACKAGE_PREFIX}-openssl ${MINGW_PACKAGE_PREFIX}-zlib"
+  # Do a full MSYS2 update.
+  - C:/msys64/usr/bin/pacman --noconfirm --sync --refresh --refresh --sysupgrade --sysupgrade
 
 build_script:
   - c:/msys64/%MSYSTEM%/bin/gcc.exe --version

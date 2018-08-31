@@ -75,7 +75,7 @@ environment:
   matrix:
     - target_ruby: "2.5.1"
       arch: "x64"
-      build_ruby: "25-x64"
+      build_ruby: "22"
       MINGW_PACKAGE_PREFIX: "mingw-w64-x86_64"
       MSYSTEM: "MINGW64"
       run_ruby_spec: true

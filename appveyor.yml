@@ -1,7 +1,8 @@
 init:
   - echo %PATH%
   # We use a clean PATH to avoid interferences with the hundreds of installed programs.
-  - set PATH=c:/Program Files/Git/cmd;c:/ProgramData/chocolatey/bin;c:/Program Files (x86)/Inno Setup 5;c:/Windows/system32;C:/Windows/System32/WindowsPowerShell/v1.0
+  #- set PATH=c:/Program Files/Git/cmd;c:/ProgramData/chocolatey/bin;c:/Program Files (x86)/Inno Setup 5;c:/Windows/system32;C:/Windows/System32/WindowsPowerShell/v1.0
+  - set PATH=c:/Program Files (x86)/Inno Setup 5;%PATH%
   - set PATH=C:/ruby%build_ruby%/bin;%PATH%
   - echo %PATH%
   - ruby --version
@@ -13,9 +14,8 @@ build_script:
   - c:/msys64/%MSYSTEM%/bin/gcc.exe --version
 
   # Build the installer
-  - cmd: rake ri:ruby-%target_ruby%-%arch%:unpack & echo done
-  - rake --trace --verbose ri:ruby-%target_ruby%-%arch%:sandbox
-  - rake --trace --verbose ri:ruby-%target_ruby%-%arch%:archive-7z
+  - cmd: rake ri:ruby-%target_ruby%-%arch%:unpack & echo done & rake --trace --verbose ri:ruby-%target_ruby%-%arch%:sandbox
+  - cmd: rake --trace --verbose ri:ruby-%target_ruby%-%arch%:archive-7z
   - rake --trace --verbose ri:ruby-%target_ruby%-%arch%:installer-inno
 
 test_script:

@@ -1,3 +1,5 @@
+image: Previous Visual Studio 2017
+
 init:
   - echo %PATH%
   # We use a clean PATH to avoid interferences with the hundreds of installed programs.
@@ -14,8 +16,9 @@ build_script:
   - c:/msys64/%MSYSTEM%/bin/gcc.exe --version
 
   # Build the installer
-  - cmd: rake ri:ruby-%target_ruby%-%arch%:unpack & echo done & rake --trace --verbose ri:ruby-%target_ruby%-%arch%:sandbox
-  - cmd: rake --trace --verbose ri:ruby-%target_ruby%-%arch%:archive-7z
+  - ps: rake ri:ruby-%target_ruby%-%arch%:unpack & echo done
+  - ps: rake --trace --verbose ri:ruby-%target_ruby%-%arch%:sandbox
+  - rake --trace --verbose ri:ruby-%target_ruby%-%arch%:archive-7z
   - rake --trace --verbose ri:ruby-%target_ruby%-%arch%:installer-inno
 
 test_script:

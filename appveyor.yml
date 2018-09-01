@@ -13,7 +13,7 @@ build_script:
   - c:/msys64/%MSYSTEM%/bin/gcc.exe --version
 
   # Build the installer
-  - cmd: (rake ri:ruby-%target_ruby%-%arch%:unpack & echo done)
+  - cmd: rake ri:ruby-%target_ruby%-%arch%:unpack & echo done
   - rake --trace --verbose ri:ruby-%target_ruby%-%arch%:sandbox
   - rake --trace --verbose ri:ruby-%target_ruby%-%arch%:archive-7z
   - rake --trace --verbose ri:ruby-%target_ruby%-%arch%:installer-inno

@@ -19,6 +19,7 @@ task :gem => :build
       task name do
         chdir "packages/#{packname}" do
           sh "rake", name
+          exit!
         end
       end
     end

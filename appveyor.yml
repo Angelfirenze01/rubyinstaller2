@@ -11,10 +11,10 @@ install:
 
 build_script:
   - c:/msys64/usr/bin/sh -lc "mkdir -p ~/.gnupg"
-  - c:/msys64/usr/bin/sh -lc "echo batch >> ~/.gnupg/gpg.conf"
+  - c:/msys64/usr/bin/sh -lc "echo no-use-agent >> ~/.gnupg/gpg.conf"
   - c:/msys64/usr/bin/sh -lc "cat ~/.gnupg/gpg.conf"
   - c:/msys64/usr/bin/sh -lc "mkdir -p /etc/pacman.d/gnupg"
-  - c:/msys64/usr/bin/sh -lc "echo batch >> /etc/pacman.d/gnupg/gpg.conf"
+  - c:/msys64/usr/bin/sh -lc "echo no-use-agent >> /etc/pacman.d/gnupg/gpg.conf"
   - c:/msys64/usr/bin/sh -lc "cat /etc/pacman.d/gnupg/gpg.conf"
   # Build the installer
   - rake ri:ruby-%target_ruby%-%arch% & tasklist

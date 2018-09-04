@@ -17,7 +17,7 @@ build_script:
   - c:/msys64/usr/bin/sh -lc "echo batch >> /etc/pacman.d/gnupg/gpg.conf"
   - c:/msys64/usr/bin/sh -lc "cat /etc/pacman.d/gnupg/gpg.conf"
   # Build the installer
-  - rake ri:ruby-%target_ruby%-%arch% & echo Done with rake
+  - rake ri:ruby-%target_ruby%-%arch% & tasklist
 
   # Reuse installed ruby for RubyInstaller-Devkit
   - c:/msys64/usr/bin/mkdir -p packages/ri-msys/recipes/

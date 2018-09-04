@@ -13,6 +13,9 @@ build_script:
   - c:/msys64/usr/bin/sh -lc "mkdir -p ~/.gnupg"
   - c:/msys64/usr/bin/sh -lc "echo batch >> ~/.gnupg/options"
   - c:/msys64/usr/bin/sh -lc "cat ~/.gnupg/options"
+  - c:/msys64/usr/bin/sh -lc "mkdir -p /etc/pacman.d/gnupg"
+  - c:/msys64/usr/bin/sh -lc "echo batch >> /etc/pacman.d/gnupg/options"
+  - c:/msys64/usr/bin/sh -lc "cat /etc/pacman.d/gnupg/options"
   # Build the installer
   - rake ri:ruby-%target_ruby%-%arch% & echo Done with rake
 

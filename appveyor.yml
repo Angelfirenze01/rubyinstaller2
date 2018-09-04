@@ -11,13 +11,13 @@ install:
 
 build_script:
   - c:/msys64/usr/bin/sh -lc "mkdir -p ~/.gnupg"
-  - c:/msys64/usr/bin/sh -lc "echo no-autostart >> ~/.gnupg/gpg.conf"
-  - c:/msys64/usr/bin/sh -lc "cat ~/.gnupg/gpg.conf"
+  - c:/msys64/usr/bin/sh -lc "echo disable-scdaemon >> ~/.gnupg/gpg-agent.conf"
+  - c:/msys64/usr/bin/sh -lc "cat ~/.gnupg/gpg-agent.conf"
   - c:/msys64/usr/bin/sh -lc "mkdir -p /etc/pacman.d/gnupg"
-  - c:/msys64/usr/bin/sh -lc "echo no-autostart >> /etc/pacman.d/gnupg/gpg.conf"
-  - c:/msys64/usr/bin/sh -lc "cat /etc/pacman.d/gnupg/gpg.conf"
+  - c:/msys64/usr/bin/sh -lc "echo disable-scdaemon >> /etc/pacman.d/gnupg/gpg-agent.conf"
+  - c:/msys64/usr/bin/sh -lc "cat /etc/pacman.d/gnupg/gpg-agent.conf"
   # Build the installer
-  - rake ri:ruby-%target_ruby%-%arch% & tasklist
+  - rake ri:ruby-%target_ruby%-%arch% & c:/msys64/usr/bin/sh -lc "gpgconf --homedir /etc/pacman.d/gnupg --kill all" & tasklist
 
   # Reuse installed ruby for RubyInstaller-Devkit
   - c:/msys64/usr/bin/mkdir -p packages/ri-msys/recipes/

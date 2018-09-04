@@ -10,6 +10,9 @@ install:
   - choco install -y InnoSetup
 
 build_script:
+  - c:/msys64/usr/bin/sh -lc "mkdir -p ~/.gnupg"
+  - c:/msys64/usr/bin/sh -lc "echo batch >> ~/.gnupg/options"
+  - c:/msys64/usr/bin/sh -lc "cat ~/.gnupg/options"
   # Build the installer
   - rake ri:ruby-%target_ruby%-%arch% & echo Done with rake
 
@@ -67,6 +70,7 @@ artifacts:
     name: Executable installer with MYS2
 
 environment:
+  GNUPGHOME: C:/projects/rubyinstaller2-hbuor/.gnupg
   GPGPASSWD:
     secure: /DELcKSZC+R4HdXgsqR1RtC+IrDZ3Xut/vzV/KgepE3M8OsjJtmWutN0+Jvc2Iv2
   DEPLOY_REPO_NAME: oneclick/rubyinstaller2

@@ -116,10 +116,10 @@ namespace "release" do
       RubyInstaller::Build.enable_msys_apps
 
       sh "c:/msys64/usr/bin/mkdir -p /c/Users/appveyor/.gnupg"
-      sh "gpg --passphrase %GPGPASSWD% --decrypt appveyor-key.asc.asc | gpg --import"
+      sh "gpg --batch --passphrase %GPGPASSWD% --decrypt appveyor-key.asc.asc | gpg --batch --import"
       sh "c:/msys64/usr/bin/mkdir artifacts"
       sh "cp", "-v", *files, "artifacts/"
-      sh "ls artifacts/* | xargs -n1 gpg --verbose --detach-sign --armor"
+      sh "ls artifacts/* | xargs -n1 gpg --batch --verbose --detach-sign --armor"
       sh "rake release:upload -- artifacts/*"
     else
       puts "No release upload"
